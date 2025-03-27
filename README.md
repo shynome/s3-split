@@ -32,11 +32,13 @@ type = local
 # ACCESS_KEY_ID 就是密码, 记得设置的复杂点, 分用户是靠路径分割的
 # [ACCESS_KEY_ID] = [后端:路径]
 ACCESS_KEY_ID = local:/tmp/s3-split/ACCESS_KEY_ID
+ACCESS_KEY_ID2 = local:/tmp/s3-split/user2
 
 [s3test]
 type = s3
 provider = Rclone
 endpoint = http://127.0.0.1:8080/
+# 把下面的值改成 ACCESS_KEY_ID2 就是另一个用户的文件
 access_key_id = ACCESS_KEY_ID
 secret_access_key = SECRET_ACCESS_KEY
 use_multipart_uploads = false
@@ -46,9 +48,11 @@ use_multipart_uploads = false
 
 ```sh
 # 创建测试用目录
-mkdir -p /tmp/s3-split/ACCESS_KEY_ID/bucket1
+mkdir -p /tmp/s3-split/ACCESS_KEY_ID/bucket1 /tmp/s3-split/user2
 # 使用 webdav 测试管理文件
 rclone serve webdav --addr 127.0.0.1:8000 s3test:/bucket1
+# 测试完成后清理测试文件夹
+rm -r /tmp/s3-split
 ```
 
 在文件管理器打开 `webdav://127.0.0.1:8000/` , 看看上传是否正常
