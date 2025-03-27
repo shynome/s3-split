@@ -30,6 +30,7 @@ func main() {
 	)
 	flag.StringVar(&cfile, "c", "", "rclone config file path")
 	flag.StringVar(&user, "u", "", "user for test")
+	flag.String("version", Version, "s3-split version")
 	flag.Parse()
 
 	if cfile == "" {
