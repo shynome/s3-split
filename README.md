@@ -1,6 +1,6 @@
 # 简介
 
-这是一个用于将 s3 bucket 分割成多个子用户的 rclone auth proxy 插件
+这是一个将 s3 bucket 分割成多个子用户使用的 rclone auth proxy 插件
 
 # 如何使用
 
